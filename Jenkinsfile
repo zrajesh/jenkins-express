@@ -1,23 +1,18 @@
 pipeline {
     agent any
+    options {
+        // Timeout counter starts AFTER agent is allocated
+        timeout(time: 1, unit: 'SECONDS')
+    }
     stages {
-        stage("checkout") {
-            steps{
-                checkout scm
+        stage('Example') {
+            steps {
+                echo 'Hello World'
             }
         }
-        stage("Test") {
-            steps{
-                sh 'sudo apt-get update'
-                sh 'sudo apt install npm'
-                sh 'npm install'
-                sh 'npm test'
-            }
-        }
-
-        stage("Build") {
-            steps{
-                sh 'npm run build'
+        stage('Example 2') {
+            steps {
+                echo 'Hello World'
             }
         }
     }
